@@ -631,7 +631,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
   options: {
     draftAndPublish: false;
-    timestamps: true;
   };
   attributes: {
     username: Attribute.String &
@@ -660,6 +659,21 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.role'
     >;
+    albums: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::album.album'
+    >;
+    createdRequests: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::trade-request.trade-request'
+    >;
+    receivedRequests: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::trade-request.trade-request'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -670,6 +684,225 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'plugin::users-permissions.user',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiAlbumAlbum extends Schema.CollectionType {
+  collectionName: 'albums';
+  info: {
+    singularName: 'album';
+    pluralName: 'albums';
+    displayName: 'Album';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    user: Attribute.Relation<
+      'api::album.album',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    set: Attribute.Relation<'api::album.album', 'manyToOne', 'api::set.set'>;
+    cards: Attribute.Relation<
+      'api::album.album',
+      'oneToMany',
+      'api::album-card.album-card'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::album.album',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::album.album',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiAlbumCardAlbumCard extends Schema.CollectionType {
+  collectionName: 'album_cards';
+  info: {
+    singularName: 'album-card';
+    pluralName: 'album-cards';
+    displayName: 'AlbumCard';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    quantity: Attribute.Integer & Attribute.Required & Attribute.DefaultTo<1>;
+    album: Attribute.Relation<
+      'api::album-card.album-card',
+      'manyToOne',
+      'api::album.album'
+    >;
+    card: Attribute.Relation<
+      'api::album-card.album-card',
+      'oneToOne',
+      'api::card.card'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::album-card.album-card',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::album-card.album-card',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCardCard extends Schema.CollectionType {
+  collectionName: 'cards';
+  info: {
+    singularName: 'card';
+    pluralName: 'cards';
+    displayName: 'Card';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    idFromApi: Attribute.String & Attribute.Required & Attribute.Unique;
+    name: Attribute.String & Attribute.Required;
+    types: Attribute.JSON & Attribute.Required;
+    number: Attribute.String & Attribute.Required;
+    rarity: Attribute.String & Attribute.Required;
+    image: Attribute.String & Attribute.Required;
+    set: Attribute.Relation<'api::card.card', 'manyToOne', 'api::set.set'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::card.card', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::card.card', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPackPack extends Schema.CollectionType {
+  collectionName: 'packs';
+  info: {
+    singularName: 'pack';
+    pluralName: 'packs';
+    displayName: 'Pack';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    cards: Attribute.JSON & Attribute.Required;
+    openedAt: Attribute.DateTime;
+    set: Attribute.Relation<'api::pack.pack', 'manyToOne', 'api::set.set'>;
+    openedBy: Attribute.Relation<
+      'api::pack.pack',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::pack.pack', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::pack.pack', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSetSet extends Schema.CollectionType {
+  collectionName: 'sets';
+  info: {
+    singularName: 'set';
+    pluralName: 'sets';
+    displayName: 'Set';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required & Attribute.Unique;
+    releaseDate: Attribute.Date;
+    albums: Attribute.Relation<'api::set.set', 'oneToMany', 'api::album.album'>;
+    cards: Attribute.Relation<'api::set.set', 'oneToMany', 'api::card.card'>;
+    packs: Attribute.Relation<'api::set.set', 'oneToMany', 'api::pack.pack'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::set.set', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::set.set', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiTradeRequestTradeRequest extends Schema.CollectionType {
+  collectionName: 'trade_requests';
+  info: {
+    singularName: 'trade-request';
+    pluralName: 'trade-requests';
+    displayName: 'TradeRequest';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    status: Attribute.Enumeration<['pending', 'accepted', 'rejected']> &
+      Attribute.DefaultTo<'pending'>;
+    createdDt: Attribute.DateTime & Attribute.Required;
+    creator: Attribute.Relation<
+      'api::trade-request.trade-request',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    receiver: Attribute.Relation<
+      'api::trade-request.trade-request',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    cardOffered: Attribute.Relation<
+      'api::trade-request.trade-request',
+      'oneToOne',
+      'api::album-card.album-card'
+    >;
+    cardRequested: Attribute.Relation<
+      'api::trade-request.trade-request',
+      'oneToOne',
+      'api::album-card.album-card'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::trade-request.trade-request',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::trade-request.trade-request',
       'oneToOne',
       'admin::user'
     > &
@@ -693,6 +926,12 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::album.album': ApiAlbumAlbum;
+      'api::album-card.album-card': ApiAlbumCardAlbumCard;
+      'api::card.card': ApiCardCard;
+      'api::pack.pack': ApiPackPack;
+      'api::set.set': ApiSetSet;
+      'api::trade-request.trade-request': ApiTradeRequestTradeRequest;
     }
   }
 }

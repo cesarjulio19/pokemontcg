@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "album_cards",
+  "info": {
+    "singularName": "album-card",
+    "pluralName": "album-cards",
+    "displayName": "AlbumCard",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "quantity": {
+      "type": "integer",
+      "default": 1,
+      "required": true
+    },
+    "album": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::album.album",
+      "inversedBy": "cards"
+    },
+    "card": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::card.card"
+    }
+  }
+}
