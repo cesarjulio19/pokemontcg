@@ -4,7 +4,8 @@
   "info": {
     "singularName": "set",
     "pluralName": "sets",
-    "displayName": "Set"
+    "displayName": "Set",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -18,6 +19,9 @@
     },
     "releaseDate": {
       "type": "date"
+    },
+    "numberCards": {
+      "type": "integer"
     }
   }
 }

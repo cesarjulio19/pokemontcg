@@ -838,6 +838,7 @@ export interface ApiSetSet extends Schema.CollectionType {
     singularName: 'set';
     pluralName: 'sets';
     displayName: 'Set';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -845,6 +846,7 @@ export interface ApiSetSet extends Schema.CollectionType {
   attributes: {
     name: Attribute.String & Attribute.Required & Attribute.Unique;
     releaseDate: Attribute.Date;
+    numberCards: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
