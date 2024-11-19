@@ -21,9 +21,8 @@
     },
     "set": {
       "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::set.set",
-      "inversedBy": "packs"
+      "relation": "oneToOne",
+      "target": "api::set.set"
     },
     "openedBy": {
       "type": "relation",

@@ -18,24 +18,6 @@
     },
     "releaseDate": {
       "type": "date"
-    },
-    "albums": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::album.album",
-      "mappedBy": "set"
-    },
-    "cards": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::card.card",
-      "mappedBy": "set"
-    },
-    "packs": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::pack.pack",
-      "mappedBy": "set"
     }
   }
 }

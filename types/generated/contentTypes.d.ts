@@ -697,6 +697,7 @@ export interface ApiAlbumAlbum extends Schema.CollectionType {
     singularName: 'album';
     pluralName: 'albums';
     displayName: 'Album';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -707,7 +708,7 @@ export interface ApiAlbumAlbum extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.user'
     >;
-    set: Attribute.Relation<'api::album.album', 'manyToOne', 'api::set.set'>;
+    set: Attribute.Relation<'api::album.album', 'oneToOne', 'api::set.set'>;
     cards: Attribute.Relation<
       'api::album.album',
       'oneToMany',
@@ -790,7 +791,7 @@ export interface ApiCardCard extends Schema.CollectionType {
     number: Attribute.String & Attribute.Required;
     rarity: Attribute.String & Attribute.Required;
     image: Attribute.String & Attribute.Required;
-    set: Attribute.Relation<'api::card.card', 'manyToOne', 'api::set.set'>;
+    set: Attribute.Relation<'api::card.card', 'oneToOne', 'api::set.set'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -815,7 +816,7 @@ export interface ApiPackPack extends Schema.CollectionType {
   attributes: {
     cards: Attribute.JSON & Attribute.Required;
     openedAt: Attribute.DateTime;
-    set: Attribute.Relation<'api::pack.pack', 'manyToOne', 'api::set.set'>;
+    set: Attribute.Relation<'api::pack.pack', 'oneToOne', 'api::set.set'>;
     openedBy: Attribute.Relation<
       'api::pack.pack',
       'oneToOne',
@@ -844,9 +845,6 @@ export interface ApiSetSet extends Schema.CollectionType {
   attributes: {
     name: Attribute.String & Attribute.Required & Attribute.Unique;
     releaseDate: Attribute.Date;
-    albums: Attribute.Relation<'api::set.set', 'oneToMany', 'api::album.album'>;
-    cards: Attribute.Relation<'api::set.set', 'oneToMany', 'api::card.card'>;
-    packs: Attribute.Relation<'api::set.set', 'oneToMany', 'api::pack.pack'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

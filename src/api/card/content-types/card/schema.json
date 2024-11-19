@@ -39,9 +39,8 @@
     },
     "set": {
       "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::set.set",
-      "inversedBy": "cards"
+      "relation": "oneToOne",
+      "target": "api::set.set"
     }
   }
 }
