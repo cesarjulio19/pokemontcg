@@ -12,22 +12,25 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "cards": {
-      "type": "json",
-      "required": true
-    },
-    "openedAt": {
-      "type": "datetime"
-    },
     "set": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::set.set"
     },
-    "openedBy": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "plugin::users-permissions.user"
+    "namePack": {
+      "type": "string"
+    },
+    "numberOfCards": {
+      "type": "integer",
+      "default": 5
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
     }
   }
 }

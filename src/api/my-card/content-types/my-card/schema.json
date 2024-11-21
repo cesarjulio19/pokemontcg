@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "album_cards",
+  "collectionName": "my_cards",
   "info": {
-    "singularName": "album-card",
-    "pluralName": "album-cards",
-    "displayName": "AlbumCard",
+    "singularName": "my-card",
+    "pluralName": "my-cards",
+    "displayName": "MyCard",
     "description": ""
   },
   "options": {
@@ -14,19 +14,17 @@
   "attributes": {
     "quantity": {
       "type": "integer",
-      "default": 1,
-      "required": true
-    },
-    "album": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::album.album",
-      "inversedBy": "cards"
+      "default": 1
     },
     "card": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::card.card"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
     }
   }
 }

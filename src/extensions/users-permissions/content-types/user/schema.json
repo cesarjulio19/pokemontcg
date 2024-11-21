@@ -64,22 +64,6 @@
       "target": "plugin::users-permissions.role",
       "inversedBy": "users",
       "configurable": false
-    },
-    "albums": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::album.album",
-      "mappedBy": "user"
-    },
-    "createdRequests": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::trade-request.trade-request"
-    },
-    "receivedRequests": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::trade-request.trade-request"
     }
   }
 }

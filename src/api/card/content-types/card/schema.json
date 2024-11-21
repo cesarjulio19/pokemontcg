@@ -12,24 +12,11 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "idFromApi": {
-      "type": "string",
-      "required": true,
-      "unique": true
-    },
     "name": {
       "type": "string",
       "required": true
     },
-    "types": {
-      "type": "json",
-      "required": true
-    },
     "number": {
-      "type": "string",
-      "required": true
-    },
-    "rarity": {
       "type": "string",
       "required": true
     },
@@ -41,6 +28,23 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::set.set"
+    },
+    "type": {
+      "type": "string"
+    },
+    "rarity": {
+      "type": "enumeration",
+      "enum": [
+        "Common",
+        "Uncommon",
+        "Rare",
+        "Double Rare",
+        "Illustration Rare",
+        "Ultra Rare",
+        "Special Illustration Rare",
+        "Hyper Rare "
+      ],
+      "required": true
     }
   }
 }

@@ -4,8 +4,7 @@
   "info": {
     "singularName": "set",
     "pluralName": "sets",
-    "displayName": "Set",
-    "description": ""
+    "displayName": "set"
   },
   "options": {
     "draftAndPublish": true
@@ -13,15 +12,7 @@
   "pluginOptions": {},
   "attributes": {
     "name": {
-      "type": "string",
-      "required": true,
-      "unique": true
-    },
-    "releaseDate": {
-      "type": "date"
-    },
-    "numberCards": {
-      "type": "integer"
+      "type": "string"
     }
   }
 }
