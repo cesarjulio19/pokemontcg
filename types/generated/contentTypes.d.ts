@@ -695,14 +695,29 @@ export interface ApiCardCard extends Schema.CollectionType {
     type: Attribute.String;
     rarity: Attribute.Enumeration<
       [
+        'Amazing Rare',
         'Common',
-        'Uncommon',
+        'LEGEND',
+        'Promo',
         'Rare',
-        'Double Rare',
-        'Illustration Rare',
-        'Ultra Rare',
-        'Special Illustration Rare',
-        'Hyper Rare '
+        'Rare ACE',
+        'Rare BREAK',
+        'Rare Holo',
+        'Rare Holo EX',
+        'Rare Holo GX',
+        'Rare Holo LV.X',
+        'Rare Holo Star',
+        'Rare Holo V',
+        'Rare Holo VMAX',
+        'Rare Prime',
+        'Rare Prism Star',
+        'Rare Rainbow',
+        'Rare Secret',
+        'Rare Shining',
+        'Rare Shiny',
+        'Rare Shiny GX',
+        'Rare Ultra',
+        'Uncommon'
       ]
     > &
       Attribute.Required;
