@@ -689,10 +689,8 @@ export interface ApiCardCard extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String & Attribute.Required;
-    number: Attribute.String & Attribute.Required;
     image: Attribute.String & Attribute.Required;
     set: Attribute.Relation<'api::card.card', 'oneToOne', 'api::set.set'>;
-    type: Attribute.String;
     rarity: Attribute.Enumeration<
       [
         'ACE SPEC Rare',
@@ -732,6 +730,24 @@ export interface ApiCardCard extends Schema.CollectionType {
         'Uncommon'
       ]
     > &
+      Attribute.Required;
+    number: Attribute.Integer & Attribute.Required;
+    type: Attribute.Enumeration<
+      [
+        'Colorless',
+        'Darkness',
+        'Dragon',
+        'Fairy',
+        'Fighting',
+        'Fire',
+        'Grass',
+        'Lightning',
+        'Metal',
+        'Psychic',
+        'Water'
+      ]
+    >;
+    superType: Attribute.Enumeration<['Energy', 'Pok\u00E9mon', 'Trainer']> &
       Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
