@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "trade_requests",
+  "info": {
+    "singularName": "trade-request",
+    "pluralName": "trade-requests",
+    "displayName": "TradeRequest"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "creator": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "receiver": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "cardOffered": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::my-card.my-card"
+    },
+    "cardRequested": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::my-card.my-card"
+    }
+  }
+}

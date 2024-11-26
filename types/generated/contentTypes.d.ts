@@ -362,178 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiCardCard extends Schema.CollectionType {
-  collectionName: 'cards';
-  info: {
-    singularName: 'card';
-    pluralName: 'cards';
-    displayName: 'Card';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String & Attribute.Required;
-    image: Attribute.String & Attribute.Required;
-    set: Attribute.Relation<'api::card.card', 'oneToOne', 'api::set.set'>;
-    rarity: Attribute.Enumeration<
-      [
-        'ACE SPEC Rare',
-        'Amazing Rare',
-        'Classic Collection',
-        'Common',
-        'Double Rare',
-        'Hyper Rare',
-        'Illustration Rare',
-        'LEGEND',
-        'Promo',
-        'Radiant Rare',
-        'Rare',
-        'Rare ACE',
-        'Rare BREAK',
-        'Rare Holo',
-        'Rare Holo EX',
-        'Rare Holo GX',
-        'Rare Holo LV.X',
-        'Rare Holo Star',
-        'Rare Holo V',
-        'Rare Holo VMAX',
-        'Rare Holo VSTAR',
-        'Rare Prime',
-        'Rare Prism Star',
-        'Rare Rainbow',
-        'Rare Secret',
-        'Rare Shining',
-        'Rare Shiny',
-        'Rare Shiny GX',
-        'Rare Ultra',
-        'Shiny Rare',
-        'Shiny Ultra Rare',
-        'Special Illustration Rare',
-        'Trainer Gallery Rare Holo',
-        'Ultra Rare',
-        'Uncommon'
-      ]
-    > &
-      Attribute.Required;
-    number: Attribute.Integer & Attribute.Required;
-    type: Attribute.Enumeration<
-      [
-        'Colorless',
-        'Darkness',
-        'Dragon',
-        'Fairy',
-        'Fighting',
-        'Fire',
-        'Grass',
-        'Lightning',
-        'Metal',
-        'Psychic',
-        'Water'
-      ]
-    >;
-    superType: Attribute.Enumeration<['Energy', 'Pok\u00E9mon', 'Trainer']> &
-      Attribute.Required;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::card.card', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::card.card', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
-export interface ApiMyCardMyCard extends Schema.CollectionType {
-  collectionName: 'my_cards';
-  info: {
-    singularName: 'my-card';
-    pluralName: 'my-cards';
-    displayName: 'MyCard';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    quantity: Attribute.Integer & Attribute.DefaultTo<1>;
-    card: Attribute.Relation<
-      'api::my-card.my-card',
-      'oneToOne',
-      'api::card.card'
-    >;
-    user: Attribute.Relation<
-      'api::my-card.my-card',
-      'oneToOne',
-      'plugin::users-permissions.user'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::my-card.my-card',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::my-card.my-card',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiPackPack extends Schema.CollectionType {
-  collectionName: 'packs';
-  info: {
-    singularName: 'pack';
-    pluralName: 'packs';
-    displayName: 'Pack';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    set: Attribute.Relation<'api::pack.pack', 'oneToOne', 'api::set.set'>;
-    namePack: Attribute.String;
-    numberOfCards: Attribute.Integer & Attribute.DefaultTo<5>;
-    image: Attribute.Media & Attribute.Required;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::pack.pack', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::pack.pack', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
-export interface ApiSetSet extends Schema.CollectionType {
-  collectionName: 'sets';
-  info: {
-    singularName: 'set';
-    pluralName: 'sets';
-    displayName: 'set';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::set.set', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::set.set', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -848,6 +676,227 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiCardCard extends Schema.CollectionType {
+  collectionName: 'cards';
+  info: {
+    singularName: 'card';
+    pluralName: 'cards';
+    displayName: 'Card';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    image: Attribute.String & Attribute.Required;
+    set: Attribute.Relation<'api::card.card', 'oneToOne', 'api::set.set'>;
+    rarity: Attribute.Enumeration<
+      [
+        'ACE SPEC Rare',
+        'Amazing Rare',
+        'Classic Collection',
+        'Common',
+        'Double Rare',
+        'Hyper Rare',
+        'Illustration Rare',
+        'LEGEND',
+        'Promo',
+        'Radiant Rare',
+        'Rare',
+        'Rare ACE',
+        'Rare BREAK',
+        'Rare Holo',
+        'Rare Holo EX',
+        'Rare Holo GX',
+        'Rare Holo LV.X',
+        'Rare Holo Star',
+        'Rare Holo V',
+        'Rare Holo VMAX',
+        'Rare Holo VSTAR',
+        'Rare Prime',
+        'Rare Prism Star',
+        'Rare Rainbow',
+        'Rare Secret',
+        'Rare Shining',
+        'Rare Shiny',
+        'Rare Shiny GX',
+        'Rare Ultra',
+        'Shiny Rare',
+        'Shiny Ultra Rare',
+        'Special Illustration Rare',
+        'Trainer Gallery Rare Holo',
+        'Ultra Rare',
+        'Uncommon'
+      ]
+    > &
+      Attribute.Required;
+    number: Attribute.Integer & Attribute.Required;
+    type: Attribute.Enumeration<
+      [
+        'Colorless',
+        'Darkness',
+        'Dragon',
+        'Fairy',
+        'Fighting',
+        'Fire',
+        'Grass',
+        'Lightning',
+        'Metal',
+        'Psychic',
+        'Water'
+      ]
+    >;
+    superType: Attribute.Enumeration<['Energy', 'Pok\u00E9mon', 'Trainer']> &
+      Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::card.card', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::card.card', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiMyCardMyCard extends Schema.CollectionType {
+  collectionName: 'my_cards';
+  info: {
+    singularName: 'my-card';
+    pluralName: 'my-cards';
+    displayName: 'MyCard';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    quantity: Attribute.Integer & Attribute.DefaultTo<1>;
+    card: Attribute.Relation<
+      'api::my-card.my-card',
+      'oneToOne',
+      'api::card.card'
+    >;
+    user: Attribute.Relation<
+      'api::my-card.my-card',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::my-card.my-card',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::my-card.my-card',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPackPack extends Schema.CollectionType {
+  collectionName: 'packs';
+  info: {
+    singularName: 'pack';
+    pluralName: 'packs';
+    displayName: 'Pack';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    set: Attribute.Relation<'api::pack.pack', 'oneToOne', 'api::set.set'>;
+    namePack: Attribute.String;
+    numberOfCards: Attribute.Integer & Attribute.DefaultTo<5>;
+    image: Attribute.Media & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::pack.pack', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::pack.pack', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSetSet extends Schema.CollectionType {
+  collectionName: 'sets';
+  info: {
+    singularName: 'set';
+    pluralName: 'sets';
+    displayName: 'set';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::set.set', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::set.set', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiTradeRequestTradeRequest extends Schema.CollectionType {
+  collectionName: 'trade_requests';
+  info: {
+    singularName: 'trade-request';
+    pluralName: 'trade-requests';
+    displayName: 'TradeRequest';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    creator: Attribute.Relation<
+      'api::trade-request.trade-request',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    receiver: Attribute.Relation<
+      'api::trade-request.trade-request',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    cardOffered: Attribute.Relation<
+      'api::trade-request.trade-request',
+      'oneToOne',
+      'api::my-card.my-card'
+    >;
+    cardRequested: Attribute.Relation<
+      'api::trade-request.trade-request',
+      'oneToOne',
+      'api::my-card.my-card'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::trade-request.trade-request',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::trade-request.trade-request',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -858,16 +907,17 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::card.card': ApiCardCard;
-      'api::my-card.my-card': ApiMyCardMyCard;
-      'api::pack.pack': ApiPackPack;
-      'api::set.set': ApiSetSet;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::card.card': ApiCardCard;
+      'api::my-card.my-card': ApiMyCardMyCard;
+      'api::pack.pack': ApiPackPack;
+      'api::set.set': ApiSetSet;
+      'api::trade-request.trade-request': ApiTradeRequestTradeRequest;
     }
   }
 }
