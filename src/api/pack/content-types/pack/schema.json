@@ -23,14 +23,6 @@
     "numberOfCards": {
       "type": "integer",
       "default": 5
-    },
-    "image": {
-      "allowedTypes": [
-        "images"
-      ],
-      "type": "media",
-      "multiple": false,
-      "required": true
     }
   }
 }

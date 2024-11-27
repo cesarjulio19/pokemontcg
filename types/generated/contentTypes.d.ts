@@ -815,7 +815,6 @@ export interface ApiPackPack extends Schema.CollectionType {
     set: Attribute.Relation<'api::pack.pack', 'oneToOne', 'api::set.set'>;
     namePack: Attribute.String;
     numberOfCards: Attribute.Integer & Attribute.DefaultTo<5>;
-    image: Attribute.Media & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
