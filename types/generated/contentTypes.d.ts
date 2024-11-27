@@ -813,7 +813,7 @@ export interface ApiPackPack extends Schema.CollectionType {
   };
   attributes: {
     set: Attribute.Relation<'api::pack.pack', 'oneToOne', 'api::set.set'>;
-    namePack: Attribute.String;
+    name: Attribute.String;
     numberOfCards: Attribute.Integer & Attribute.DefaultTo<5>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
