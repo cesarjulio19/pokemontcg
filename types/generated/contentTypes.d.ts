@@ -659,6 +659,8 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.role'
     >;
+    image: Attribute.Media;
+    adminRole: Attribute.Boolean & Attribute.DefaultTo<false>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -689,7 +691,7 @@ export interface ApiCardCard extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String & Attribute.Required;
-    image: Attribute.String & Attribute.Required;
+    illustration: Attribute.String;
     set: Attribute.Relation<'api::card.card', 'oneToOne', 'api::set.set'>;
     rarity: Attribute.Enumeration<
       [
@@ -749,6 +751,7 @@ export interface ApiCardCard extends Schema.CollectionType {
     >;
     superType: Attribute.Enumeration<['Energy', 'Pok\u00E9mon', 'Trainer']> &
       Attribute.Required;
+    image: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -814,7 +817,6 @@ export interface ApiPackPack extends Schema.CollectionType {
   attributes: {
     set: Attribute.Relation<'api::pack.pack', 'oneToOne', 'api::set.set'>;
     name: Attribute.String;
-    numberOfCards: Attribute.Integer & Attribute.DefaultTo<5>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -831,12 +833,14 @@ export interface ApiSetSet extends Schema.CollectionType {
     singularName: 'set';
     pluralName: 'sets';
     displayName: 'set';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     name: Attribute.String;
+    image: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

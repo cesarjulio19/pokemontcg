@@ -16,9 +16,9 @@
       "type": "string",
       "required": true
     },
-    "image": {
+    "illustration": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "set": {
       "type": "relation",
@@ -95,6 +95,14 @@
         "Trainer"
       ],
       "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
     }
   }
 }

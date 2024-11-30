@@ -19,10 +19,6 @@
     },
     "name": {
       "type": "string"
-    },
-    "numberOfCards": {
-      "type": "integer",
-      "default": 5
     }
   }
 }
